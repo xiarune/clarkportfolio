@@ -135,30 +135,17 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
-  /**
-   * Validate a single field.
-   * context = 'blur'  -> only format errors (non-empty) should show.
-   * context = 'submit' -> required + format errors.
-   */
   const validateField = (name, value, context) => {
     const trimmed = value.trim();
-
     const isSubmit = context === 'submit';
 
     if (name === 'name') {
-      // Required, but only show required error on submit.
-      if (isSubmit && !trimmed) {
-        return 'Name is required.';
-      }
-      // no format rules for name
+      if (isSubmit && !trimmed) return 'Name is required.';
       return '';
     }
 
     if (name === 'email') {
-      if (isSubmit && !trimmed) {
-        return 'Email is required.';
-      }
-      // Format errors: only if non-empty
+      if (isSubmit && !trimmed) return 'Email is required.';
       if (trimmed && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
         return 'Please enter a valid email address.';
       }
@@ -166,9 +153,7 @@ export default function Contact() {
     }
 
     if (name === 'phone') {
-      // Optional: never "required" error
       if (!trimmed) return '';
-      // Format errors on blur + submit if non-empty
       const digitsOnly = trimmed.replace(/\D/g, '');
       if (digitsOnly.length < 7 || digitsOnly.length > 20) {
         return 'Please enter a valid phone number.';
@@ -177,25 +162,18 @@ export default function Contact() {
     }
 
     if (name === 'message') {
-      // Required on submit only
-      if (isSubmit && !trimmed) {
-        return 'Message is required.';
-      }
-      // no extra format rules
+      if (isSubmit && !trimmed) return 'Message is required.';
       return '';
     }
 
     return '';
   };
 
-  // Full form validation on submit
   const validate = () => {
     const newErrors = {};
     Object.entries(formData).forEach(([fieldName, value]) => {
       const error = validateField(fieldName, value, 'submit');
-      if (error) {
-        newErrors[fieldName] = error;
-      }
+      if (error) newErrors[fieldName] = error;
     });
     return newErrors;
   };
@@ -204,21 +182,15 @@ export default function Contact() {
     const { name, value } = e.target;
 
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear that field's error while typing
     setErrors((prev) => ({ ...prev, [name]: '' }));
     setSubmitted(false);
   };
 
-  // On blur, only show format errors (required empties are ignored here)
   const handleBlur = (e) => {
     const { name, value } = e.target;
     const error = validateField(name, value, 'blur');
 
-    if (error) {
-      setErrors((prev) => ({ ...prev, [name]: error }));
-    } else {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
+    setErrors((prev) => ({ ...prev, [name]: error || '' }));
   };
 
   const handleSubmit = (e) => {
@@ -228,12 +200,13 @@ export default function Contact() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setSubmitted(false);
-    } else {
-      console.log('Form Submitted:', formData);
-      setFormData({ name: '', email: '', phone: '', message: '' });
-      setErrors({});
-      setSubmitted(true);
+      return;
     }
+
+    console.log('Form Submitted:', formData);
+    setFormData({ name: '', email: '', phone: '', message: '' });
+    setErrors({});
+    setSubmitted(true);
   };
 
   return (
@@ -241,6 +214,7 @@ export default function Contact() {
       <Overlay />
       <FormContainer>
         <Title id="contact-title">Contact Me</Title>
+
         <StyledForm onSubmit={handleSubmit} noValidate>
           <FieldGroup>
             <Label htmlFor="name">Name</Label>
@@ -341,6 +315,7 @@ export default function Contact() {
     </Wrapper>
   );
 }
+
 
 
 

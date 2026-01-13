@@ -54,7 +54,6 @@ const LeadText = styled.p`
   margin-bottom: 1rem;
 `;
 
-// Box with same opacity as nav background (#ffffffcc)
 const ActionsBox = styled.nav.attrs({
   'aria-label': 'Highlighted sections',
 })`
@@ -118,8 +117,9 @@ export default function Home() {
       <Overlay />
       <Content>
         <Title id="home-title">Welcome to My Portfolio</Title>
+
         <Paragraph>
-          Hello! I’m Sage, a digital creative blending logic, storytelling, and
+          Hello! I’m Caroline, a digital creative blending logic, storytelling, and
           code.
         </Paragraph>
 
@@ -133,12 +133,14 @@ export default function Home() {
                 <ActionDetail>within Projects.</ActionDetail>
               </ActionLink>
             </ActionItem>
+
             <ActionItem>
               <ActionLink to="/about">
                 <ActionLabel>Learn more about me</ActionLabel>
                 <ActionDetail>on within About.</ActionDetail>
               </ActionLink>
             </ActionItem>
+
             <ActionItem>
               <ActionLink to="/contact">
                 <ActionLabel>Get in touch</ActionLabel>
@@ -151,6 +153,7 @@ export default function Home() {
     </HomeWrapper>
   );
 }
+
 
 
 

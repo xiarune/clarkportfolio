@@ -70,12 +70,12 @@ const StyledLink = styled(Link)`
 
   &.active {
     font-weight: 700;
-    color: #145aaf; /* active blue */
-    font-size: 1.1rem; /* slightly larger */
+    color: #145aaf;
+    font-size: 1.1rem;
   }
 
   &.active:hover {
-    color: #4b89d4; /* lighter blue on hover */
+    color: #4b89d4;
   }
 
   &:focus-visible {
@@ -92,6 +92,7 @@ export default function Navbar() {
     <Nav>
       <NavInner>
         <LogoLink to="/">My Portfolio</LogoLink>
+
         <NavLinks>
           <StyledLink
             to="/"
@@ -99,18 +100,30 @@ export default function Navbar() {
           >
             Home
           </StyledLink>
+
           <StyledLink
             to="/about"
             className={location.pathname === '/about' ? 'active' : undefined}
           >
             About
           </StyledLink>
+
+          <StyledLink
+            to="/experience"
+            className={
+              location.pathname === '/experience' ? 'active' : undefined
+            }
+          >
+            Experience
+          </StyledLink>
+
           <StyledLink
             to="/projects"
             className={location.pathname === '/projects' ? 'active' : undefined}
           >
             Projects
           </StyledLink>
+
           <StyledLink
             to="/contact"
             className={location.pathname === '/contact' ? 'active' : undefined}
@@ -122,4 +135,6 @@ export default function Navbar() {
     </Nav>
   );
 }
+
+
 

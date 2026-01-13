@@ -60,14 +60,14 @@ const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   max-width: 1000px;
   margin: 0 auto;
-  align-items: stretch; /* ensure all items in a row stretch to same height */
+  align-items: stretch;
 `;
 
 const CardLink = styled.a`
   text-decoration: none;
   color: inherit;
   display: block;
-  height: 100%; /* let the card fill the full track height */
+  height: 100%;
 
   &:focus-visible {
     outline: 2px solid #111;
@@ -87,7 +87,7 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: center;
   min-height: 240px;
-  height: 100%; /* stretch to full height of the parent grid cell */
+  height: 100%;
 
   &:hover {
     transform: translateY(-5px);
@@ -161,6 +161,7 @@ export default function Projects() {
       <Content>
         <Title id="projects-title">My Projects</Title>
         <Description>Here are some of the things I’ve built recently.</Description>
+
         <Grid>
           {projectData.map((project, index) => {
             const isExternal = project.link?.startsWith('http');
@@ -196,5 +197,6 @@ export default function Projects() {
     </Wrapper>
   );
 }
+
 
 

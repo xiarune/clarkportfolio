@@ -21,20 +21,17 @@ code {
     monospace;
 }
 
-/* Layout wrapper so footer stays at bottom */
 .app-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Ensure main grows between navbar and footer */
 main {
   flex: 1;
   display: block;
 }
 
-/* Skip link */
 .skip-link {
   position: absolute;
   left: -999px;
@@ -53,7 +50,6 @@ main {
   top: 1rem;
 }
 
-/* Global focus styles */
 a,
 button {
   outline: none;
@@ -66,7 +62,6 @@ button:focus-visible {
   border-radius: 3px;
 }
 
-/* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.001ms !important;
@@ -75,4 +70,5 @@ button:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
 
