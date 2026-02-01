@@ -2,7 +2,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import backgroundExperience from '../assets/images/background-experience.jpg';
-import experienceImg from '../assets/images/LM_Logo.png';
+import experienceImg from '';
+
+// ../assets/images/LM_Logo.png ** LINK TO LOGO PIC FOR LATER
 
 const Wrapper = styled.section.attrs({
   'aria-labelledby': 'experience-title',
@@ -90,7 +92,7 @@ export default function Experience() {
             <Title id="experience-title">Experience</Title>
             <Paragraph>
                 1 Year & 9 Months <br></br>
-                System Engineering CWEP <br></br>
+                System Engineering Manager <br></br>
               Running Department Monthly & Weekly Newsletters, 
               Event & Personal Graphic and Video Requests, 
               File Maintenance & File Cleanup
