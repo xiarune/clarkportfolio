@@ -119,7 +119,7 @@ export default function Home() {
         <Title id="home-title">Welcome to My Portfolio</Title>
 
         <Paragraph>
-          Hello! I’m Caroline, a digital creative blending logic, storytelling, and
+          Hello! I’m Sage, a digital creative blending logic, storytelling, and
           code.
         </Paragraph>
 

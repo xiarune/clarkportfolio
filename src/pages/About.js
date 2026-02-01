@@ -62,7 +62,7 @@ export default function About() {
           with a passion for creating thoughtful, aesthetic, <br />
           and impactful digital experiences. My work blends design, <br />
           storytelling, and technology to build things that resonate <br />
-          deeply and look good doing it.
+          deeply.
         </Paragraph>
       </Content>
     </AboutWrapper>
