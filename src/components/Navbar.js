@@ -1,5 +1,5 @@
 // src/components/Navbar.js
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -33,6 +33,7 @@ const LogoLink = styled(Link)`
   color: #111;
   text-decoration: none;
   padding: 0.25rem 0;
+  z-index: 1001;
 
   &:hover {
     color: #000;
@@ -45,13 +46,65 @@ const LogoLink = styled(Link)`
   }
 `;
 
+const HamburgerButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+
+  @media (max-width: 640px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #111;
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+`;
+
+const HamburgerLine = styled.span`
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #111;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  &:nth-child(1) {
+    transform: ${({ $isOpen }) => $isOpen ? 'translateY(8.5px) rotate(45deg)' : 'none'};
+  }
+
+  &:nth-child(2) {
+    opacity: ${({ $isOpen }) => $isOpen ? 0 : 1};
+  }
+
+  &:nth-child(3) {
+    transform: ${({ $isOpen }) => $isOpen ? 'translateY(-8.5px) rotate(-45deg)' : 'none'};
+  }
+`;
+
 const NavLinks = styled.div`
   display: flex;
   gap: 2rem;
 
   @media (max-width: 640px) {
-    gap: 1rem;
-    font-size: 0.9rem;
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    gap: 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: ${({ $isOpen }) => $isOpen ? 'flex' : 'none'};
   }
 `;
 
@@ -87,16 +140,31 @@ const StyledLink = styled(Link)`
 
 export default function Navbar() {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <Nav>
       <NavInner>
-        <LogoLink to="/">Caroline Clark</LogoLink>
+        <LogoLink to="/" onClick={closeMenu}>Caroline Clark</LogoLink>
 
-        <NavLinks>
+        <HamburgerButton
+          onClick={toggleMenu}
+          aria-expanded={isOpen}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        >
+          <HamburgerLine $isOpen={isOpen} />
+          <HamburgerLine $isOpen={isOpen} />
+          <HamburgerLine $isOpen={isOpen} />
+        </HamburgerButton>
+
+        <NavLinks $isOpen={isOpen}>
           <StyledLink
             to="/"
             className={location.pathname === '/' ? 'active' : undefined}
+            onClick={closeMenu}
           >
             Home
           </StyledLink>
@@ -104,6 +172,7 @@ export default function Navbar() {
           <StyledLink
             to="/about"
             className={location.pathname === '/about' ? 'active' : undefined}
+            onClick={closeMenu}
           >
             About
           </StyledLink>
@@ -113,6 +182,7 @@ export default function Navbar() {
             className={
               location.pathname === '/experience' ? 'active' : undefined
             }
+            onClick={closeMenu}
           >
             Experience
           </StyledLink>
@@ -120,6 +190,7 @@ export default function Navbar() {
           <StyledLink
             to="/projects"
             className={location.pathname === '/projects' ? 'active' : undefined}
+            onClick={closeMenu}
           >
             Projects
           </StyledLink>
@@ -127,6 +198,7 @@ export default function Navbar() {
           <StyledLink
             to="/contact"
             className={location.pathname === '/contact' ? 'active' : undefined}
+            onClick={closeMenu}
           >
             Contact
           </StyledLink>
