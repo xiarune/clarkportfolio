@@ -91,7 +91,7 @@ export default function Navbar() {
   return (
     <Nav>
       <NavInner>
-        <LogoLink to="/">My Portfolio</LogoLink>
+        <LogoLink to="/">Caroline Clark</LogoLink>
 
         <NavLinks>
           <StyledLink

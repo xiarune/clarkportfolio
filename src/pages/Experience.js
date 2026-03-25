@@ -2,9 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import backgroundExperience from '../assets/images/background-experience.jpg';
-import experienceImg from '';
-
-// ../assets/images/LM_Logo.png ** LINK TO LOGO PIC FOR LATER
+import experienceImg from '../assets/images/LM_Logo.png';
 
 const Wrapper = styled.section.attrs({
   'aria-labelledby': 'experience-title',

@@ -116,11 +116,11 @@ export default function Home() {
     <HomeWrapper>
       <Overlay />
       <Content>
-        <Title id="home-title">Welcome to My Portfolio</Title>
+        <Title id="home-title">Creative Developer & Designer</Title>
 
         <Paragraph>
-          Hello! I’m Sage, a digital creative blending logic, storytelling, and
-          code.
+          Hello! I'm Caroline, a digital creative blending logic, storytelling,
+          and code.
         </Paragraph>
 
         <LeadText>From here, you can jump straight to:</LeadText>

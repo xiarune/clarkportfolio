@@ -119,8 +119,8 @@ export default function Projects() {
   const projectData = [
     {
       title: 'Sable: A Reading & Writing Audio Immersive Platform',
-      description: 'A flushed out application with HI-FI Figma Prototype',
-      link: 'https://www.figma.com/proto/nrL7ekTeUip1ybJjxzPQ1D/Sable--Hi-Fi-?node-id=2320-725&p=f&t=2JJMtqrBHX1xbkQy-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=8%3A2&show-proto-sidebar=1',
+      description: 'Full Stack reading and writing application (MERN)',
+      link: 'https://sable-two.vercel.app/',
       image: portImg,
     },
     {
