@@ -75,7 +75,7 @@ const ImageBlock = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  max-width: 420px;
+  max-width: 300px;
   height: auto;
   object-fit: contain;
 `;
@@ -89,8 +89,8 @@ export default function Experience() {
           <TextBlock>
             <Title id="experience-title">Experience</Title>
             <Paragraph>
-                1 Year & 9 Months <br></br>
-                System Engineering Manager <br></br>
+                2 Years (April 2024 – May 2026) <br></br>
+                System Engineering CWEP <br></br>
               Running Department Monthly & Weekly Newsletters, 
               Event & Personal Graphic and Video Requests, 
               File Maintenance & File Cleanup
