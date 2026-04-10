@@ -2,7 +2,7 @@
   "name": "personal-portfolio-accessible",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://xiarune.github.io/personal-portfolio-accessible",
+  "homepage": "https://xiarune.github.io/clarkportfolio",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
