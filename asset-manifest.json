@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/clarkportfolio/static/css/main.bb9bcdb4.css",
+    "main.js": "/clarkportfolio/static/js/main.2da306f9.js",
+    "static/media/literature.png": "/clarkportfolio/static/media/literature.cfce7c866ad70f1223b4.png",
+    "static/media/background-home.jpg": "/clarkportfolio/static/media/background-home.394099b8538fe907e327.jpg",
+    "static/media/background-projects.jpg": "/clarkportfolio/static/media/background-projects.9b3e44aecfbaf27a2647.jpg",
+    "static/media/background-contacts.jpg": "/clarkportfolio/static/media/background-contacts.17bc29e5b798d0a3a0f5.jpg",
+    "static/media/background-experience.jpg": "/clarkportfolio/static/media/background-experience.46dbc4fb759f4f2e9bc4.jpg",
+    "static/media/profile.png": "/clarkportfolio/static/media/profile.5c22cd9587ecc1131ab9.png",
+    "static/media/film.png": "/clarkportfolio/static/media/film.4c3966d7a7becf722b5b.png",
+    "static/media/homepage_image.png": "/clarkportfolio/static/media/homepage_image.5abe409e4b9f3bca88a8.png",
+    "static/media/background-about.jpg": "/clarkportfolio/static/media/background-about.e47aab38d87086ccfae8.jpg",
+    "static/media/outline.png": "/clarkportfolio/static/media/outline.0b369064535050eceb41.png",
+    "static/media/animation.png": "/clarkportfolio/static/media/animation.ca48da0737530267ba21.png",
+    "static/media/LM_Logo.png": "/clarkportfolio/static/media/LM_Logo.5c94926231eac4b7ee34.png",
+    "static/media/quiz-app.png": "/clarkportfolio/static/media/quiz-app.d2bc165a5c9e9b7edacb.png",
+    "static/media/sable_logo.png": "/clarkportfolio/static/media/sable_logo.28d0a664e29f3db4c0bb.png",
+    "static/media/my_logo.png": "/clarkportfolio/static/media/my_logo.e8fb203449fa387aa6e1.png",
+    "static/media/edwardianscriptitc.ttf": "/clarkportfolio/static/media/edwardianscriptitc.bf7838a6543a08923c39.ttf",
+    "static/media/OldLondon.ttf": "/clarkportfolio/static/media/OldLondon.a67214b49bb04c352ce8.ttf",
+    "static/media/OldLondonAlternate.ttf": "/clarkportfolio/static/media/OldLondonAlternate.3e960913afb65de288b9.ttf",
+    "static/media/JaneAust.ttf": "/clarkportfolio/static/media/JaneAust.a313fa103e5858db63c7.ttf",
+    "static/media/nova.png": "/clarkportfolio/static/media/nova.c8427743d518be9286c8.png",
+    "static/media/PegasusEtching.png": "/clarkportfolio/static/media/PegasusEtching.d6fa77b6c6aa85a73c99.png",
+    "index.html": "/clarkportfolio/index.html",
+    "main.bb9bcdb4.css.map": "/clarkportfolio/static/css/main.bb9bcdb4.css.map",
+    "main.2da306f9.js.map": "/clarkportfolio/static/js/main.2da306f9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bb9bcdb4.css",
+    "static/js/main.2da306f9.js"
+  ]
+}
