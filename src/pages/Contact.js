@@ -1,12 +1,12 @@
 // src/pages/Contact.js
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import contactBg from '../assets/images/background-contacts.jpg';
+import backgroundContacts from '../assets/images/background-contacts.jpg';
 
 const Wrapper = styled.section.attrs({
   'aria-labelledby': 'contact-title',
 })`
-  background-image: url(${contactBg});
+  background-image: url(${backgroundContacts});
   background-size: cover;
   background-position: center;
   min-height: 90vh;
@@ -20,33 +20,36 @@ const Wrapper = styled.section.attrs({
 const Overlay = styled.div`
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(26, 20, 16, 0.65);
   z-index: 1;
 `;
 
 const FormContainer = styled.div`
   position: relative;
   z-index: 2;
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(245, 230, 200, 0.08);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  padding: 2.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
   width: 100%;
-  max-width: 600px;
+  max-width: 550px;
 `;
 
 const Title = styled.h1`
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-  font-size: 2rem;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #f5e6c8;
   margin-bottom: 2rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 `;
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.4rem;
 `;
 
 const FieldGroup = styled.div`
@@ -55,72 +58,94 @@ const FieldGroup = styled.div`
 `;
 
 const Label = styled.label`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  margin-bottom: 0.25rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: #c9a227;
 `;
 
 const Input = styled.input`
   font-family: 'Inter', sans-serif;
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
   font-size: 1rem;
-  border: 1px solid ${(props) => (props.$error ? '#ff4d4f' : '#ccc')};
-  border-radius: 6px;
+  background: rgba(245, 230, 200, 0.05);
+  border: 1px solid ${(props) => (props.$error ? '#8b1a1a' : 'rgba(201, 162, 39, 0.4)')};
+  border-radius: 8px;
   box-sizing: border-box;
+  color: #f5e6c8;
+
+  &::placeholder {
+    color: rgba(245, 230, 200, 0.4);
+  }
 
   &:focus {
     outline: none;
-    border-color: #66b2ff;
-    box-shadow: 0 0 0 2px rgba(102, 178, 255, 0.4);
+    border-color: #c9a227;
+    box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.3);
   }
 `;
 
 const TextArea = styled.textarea`
   font-family: 'Inter', sans-serif;
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
   font-size: 1rem;
-  border: 1px solid ${(props) => (props.$error ? '#ff4d4f' : '#ccc')};
-  border-radius: 6px;
+  background: rgba(245, 230, 200, 0.05);
+  border: 1px solid ${(props) => (props.$error ? '#8b1a1a' : 'rgba(201, 162, 39, 0.4)')};
+  border-radius: 8px;
   resize: vertical;
   box-sizing: border-box;
+  color: #f5e6c8;
+
+  &::placeholder {
+    color: rgba(245, 230, 200, 0.4);
+  }
 
   &:focus {
     outline: none;
-    border-color: #66b2ff;
-    box-shadow: 0 0 0 2px rgba(102, 178, 255, 0.4);
+    border-color: #c9a227;
+    box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.3);
   }
 `;
 
 const ErrorMsg = styled.p`
   font-family: 'Inter', sans-serif;
-  color: #ff4d4f;
+  color: #c94a4a;
   margin: 0.25rem 0 0;
   font-size: 0.9rem;
 `;
 
 const SuccessMsg = styled.p`
-  font-family: 'Inter', sans-serif;
-  color: #1c9c61;
-  font-size: 1rem;
+  font-family: 'Playfair Display', serif;
+  color: #c9a227;
+  font-size: 1.1rem;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 `;
 
 const SubmitButton = styled.button`
-  background-color: #111;
-  color: white;
+  background-color: #8b1a1a;
+  color: #f5e6c8;
   border: none;
-  padding: 0.75rem;
+  padding: 0.9rem;
   font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  border-radius: 6px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 0.5rem;
 
   &:hover {
-    background-color: #333;
+    background-color: #a52525;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #c9a227;
+    outline-offset: 3px;
   }
 `;
 
@@ -315,8 +340,3 @@ export default function Contact() {
     </Wrapper>
   );
 }
-
-
-
-
-

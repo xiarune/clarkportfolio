@@ -22,13 +22,12 @@ const Wrapper = styled.section.attrs({
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 `;
 
 const Overlay = styled.div`
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(26, 20, 16, 0.65);
   z-index: 1;
 `;
 
@@ -36,29 +35,33 @@ const Content = styled.div`
   position: relative;
   z-index: 2;
   width: 100%;
+  max-width: 1100px;
 `;
 
 const Title = styled.h1`
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #f5e6c8;
+  font-size: 3rem;
   margin-bottom: 0.5rem;
   text-align: center;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 `;
 
 const Description = styled.p`
   font-family: 'Inter', sans-serif;
-  color: #eee;
+  color: #f5e6c8;
   font-size: 1.1rem;
   margin-bottom: 3rem;
   text-align: center;
+  opacity: 0.85;
 `;
 
 const Grid = styled.div`
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1100px;
   margin: 0 auto;
   align-items: stretch;
 `;
@@ -70,49 +73,57 @@ const CardLink = styled.a`
   height: 100%;
 
   &:focus-visible {
-    outline: 2px solid #111;
+    outline: 2px solid #c9a227;
     outline-offset: 3px;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 `;
 
 const Card = styled.div`
-  background: white;
+  background: rgba(245, 230, 200, 0.08);
+  border: 1px solid rgba(201, 162, 39, 0.3);
   padding: 2rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 240px;
+  justify-content: flex-start;
+  min-height: 280px;
   height: 100%;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: rgba(201, 162, 39, 0.6);
   }
 `;
 
 const ProjectTitle = styled.h3`
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Playfair Display', serif;
   margin-top: 0;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  color: #c9a227;
+  margin-bottom: 0.75rem;
 `;
 
 const ProjectDescription = styled.p`
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: #f5e6c8;
+  opacity: 0.85;
+  flex-grow: 1;
 `;
 
 const ProjectImage = styled.img`
-  margin-top: 1rem;
-  width: 160px;
+  margin-top: auto;
+  padding-top: 1rem;
+  width: 140px;
   height: auto;
   object-fit: contain;
   align-self: center;
+  opacity: 0.9;
 `;
 
 export default function Projects() {
@@ -125,13 +136,13 @@ export default function Projects() {
     },
     {
       title: 'Interactive Quiz App',
-      description: 'Built in React Native with mulitple question types.',
+      description: 'Built in React Native with multiple question types.',
       link: 'https://github.com/xiarune/quiz-app.git',
       image: quizImg,
     },
     {
       title: 'Film Showcase',
-      description: 'Personal Short and feature length films.',
+      description: 'Personal short and feature length films.',
       link: 'https://xiarune.github.io/clark-studio-films/',
       image: filmImg,
     },
@@ -160,7 +171,7 @@ export default function Projects() {
       <Overlay />
       <Content>
         <Title id="projects-title">My Projects</Title>
-        <Description>Here are some of the things I’ve built recently.</Description>
+        <Description>Here are some of the things I've built recently.</Description>
 
         <Grid>
           {projectData.map((project, index) => {
@@ -197,6 +208,3 @@ export default function Projects() {
     </Wrapper>
   );
 }
-
-
-

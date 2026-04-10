@@ -1,13 +1,14 @@
 // src/pages/Home.js
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import backgroundImage from '../assets/images/background-home-2.jpg';
+import homepageImage from '../assets/images/homepage_image.png';
+import frameImage from '../assets/images/outline.png';
+import backgroundHome from '../assets/images/background-home.jpg';
 
 const HomeWrapper = styled.section.attrs({
   'aria-labelledby': 'home-title',
 })`
-  background-image: url(${backgroundImage});
+  background-image: url(${backgroundHome});
   background-size: cover;
   background-position: center;
   min-height: 90vh;
@@ -20,95 +21,85 @@ const HomeWrapper = styled.section.attrs({
 const Overlay = styled.div`
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(26, 20, 16, 0.65);
   z-index: 1;
 `;
 
 const Content = styled.div`
   position: relative;
   z-index: 2;
-  color: white;
   text-align: center;
-  max-width: 700px;
+  max-width: 900px;
   padding: 2rem;
 `;
 
-const Title = styled.h1`
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  letter-spacing: 0.03em;
-  margin-bottom: 1rem;
+const ArtworkContainer = styled.div`
+  position: relative;
+  display: inline-block;
 `;
 
-const Paragraph = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 400;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-`;
-
-const LeadText = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-`;
-
-const ActionsBox = styled.nav.attrs({
-  'aria-label': 'Highlighted sections',
-})`
-  background: #ffffffcc;
-  color: #111;
-  border-radius: 10px;
-  padding: 1.25rem 1.5rem;
-  margin: 0 auto;
-  max-width: 480px;
-  text-align: left;
-`;
-
-const ActionList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.75rem;
-`;
-
-const ActionItem = styled.li``;
-
-const ActionLink = styled(Link)`
+const ArtworkImage = styled.img`
+  max-width: 700px;
+  width: 90vw;
+  height: auto;
   display: block;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.98rem;
-  font-weight: 500;
-  color: #145aaf;
-  text-decoration: none;
-  padding: 0.65rem 0.8rem;
-  border-radius: 8px;
-  border: 1px solid #145aaf;
-  background: #ffffffee;
-  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 5px double rgba(201, 162, 39, 0.5);
 
-  &:hover {
-    color: #4b89d4;
-    border-color: #4b89d4;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  }
-
-  &:focus-visible {
-    outline: 2px solid #ffffff;
-    outline-offset: 3px;
+  @media (max-width: 640px) {
+    max-width: 95vw;
   }
 `;
 
-const ActionLabel = styled.span`
-  font-weight: 600;
+const FrameOverlay = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 3;
 `;
 
-const ActionDetail = styled.span`
+const TextOverlay = styled.div`
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+`;
+
+const Title = styled.h1`
+  font-family: 'Jane Austen', cursive;
+  font-size: 5rem;
+  font-weight: normal;
+  color: #f5e6c8;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+
+  @media (max-width: 640px) {
+    font-size: 3rem;
+  }
+`;
+
+const Tagline = styled.p`
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
   font-weight: 400;
-  margin-left: 0.25rem;
-  font-size: 0.95rem;
+  font-style: italic;
+  color: #f5e6c8;
+  letter-spacing: 0.08em;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+
+  @media (max-width: 640px) {
+    font-size: 1.1rem;
+  }
 `;
 
 export default function Home() {
@@ -116,45 +107,15 @@ export default function Home() {
     <HomeWrapper>
       <Overlay />
       <Content>
-        <Title id="home-title">Creative Developer & Designer</Title>
-
-        <Paragraph>
-          Hello! I'm Caroline, a digital creative blending logic, storytelling,
-          and code.
-        </Paragraph>
-
-        <LeadText>From here, you can jump straight to:</LeadText>
-
-        <ActionsBox>
-          <ActionList>
-            <ActionItem>
-              <ActionLink to="/projects">
-                <ActionLabel>Explore my work</ActionLabel>
-                <ActionDetail>within Projects.</ActionDetail>
-              </ActionLink>
-            </ActionItem>
-
-            <ActionItem>
-              <ActionLink to="/about">
-                <ActionLabel>Learn more about me</ActionLabel>
-                <ActionDetail>on within About.</ActionDetail>
-              </ActionLink>
-            </ActionItem>
-
-            <ActionItem>
-              <ActionLink to="/contact">
-                <ActionLabel>Get in touch</ActionLabel>
-                <ActionDetail>through the Contacts.</ActionDetail>
-              </ActionLink>
-            </ActionItem>
-          </ActionList>
-        </ActionsBox>
+        <ArtworkContainer>
+          <ArtworkImage src={homepageImage} alt="Featured artwork" />
+          <FrameOverlay src={frameImage} alt="" aria-hidden="true" />
+          <TextOverlay>
+            <Title id="home-title">Caroline Clark</Title>
+            <Tagline>Digital Artisan</Tagline>
+          </TextOverlay>
+        </ArtworkContainer>
       </Content>
     </HomeWrapper>
   );
 }
-
-
-
-
-

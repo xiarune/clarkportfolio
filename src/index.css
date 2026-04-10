@@ -1,3 +1,31 @@
+@font-face {
+  font-family: 'Old London';
+  src: url('./fonts/OldLondon.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Edwardian Script';
+  src: url('./fonts/edwardianscriptitc.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jane Austen';
+  src: url('./fonts/JaneAust.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Old London Alternate';
+  src: url('./fonts/OldLondonAlternate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {
