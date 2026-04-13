@@ -238,7 +238,7 @@ export default function Contact() {
     <Wrapper>
       <Overlay />
       <FormContainer>
-        <Title id="contact-title">Contact Me</Title>
+        <Title id="contact-title">Let's Get In Touch</Title>
 
         <StyledForm onSubmit={handleSubmit} noValidate>
           <FieldGroup>

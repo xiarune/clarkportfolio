@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import myLogo from '../assets/images/my_logo.png';
+import linkedinIcon from '../assets/images/LinkedIn.png';
+import emailIcon from '../assets/images/email.png';
 
 const Nav = styled.nav.attrs({
   'aria-label': 'Main navigation',
@@ -52,6 +54,46 @@ const LogoImage = styled.img`
 
   @media (max-width: 640px) {
     height: 40px;
+  }
+`;
+
+const SocialIcons = styled.div`
+  position: absolute;
+  right: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  z-index: 1001;
+
+  @media (max-width: 640px) {
+    right: 3.5rem;
+  }
+`;
+
+const IconLink = styled.a`
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #f5e6c8;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+`;
+
+const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+
+  @media (max-width: 640px) {
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -160,16 +202,6 @@ export default function Navbar() {
           <LogoImage src={myLogo} alt="Logo" />
         </LogoLink>
 
-        <HamburgerButton
-          onClick={toggleMenu}
-          aria-expanded={isOpen}
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        >
-          <HamburgerLine $isOpen={isOpen} />
-          <HamburgerLine $isOpen={isOpen} />
-          <HamburgerLine $isOpen={isOpen} />
-        </HamburgerButton>
-
         <NavLinks $isOpen={isOpen}>
           <StyledLink
             to="/"
@@ -213,6 +245,33 @@ export default function Navbar() {
             Contact
           </StyledLink>
         </NavLinks>
+
+        <SocialIcons>
+          <IconLink
+            href="https://www.linkedin.com/in/caroline-clark-456bbb282"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <Icon src={linkedinIcon} alt="" />
+          </IconLink>
+          <IconLink
+            href="mailto:cecboo2@gmail.com"
+            aria-label="Email"
+          >
+            <Icon src={emailIcon} alt="" />
+          </IconLink>
+        </SocialIcons>
+
+        <HamburgerButton
+          onClick={toggleMenu}
+          aria-expanded={isOpen}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        >
+          <HamburgerLine $isOpen={isOpen} />
+          <HamburgerLine $isOpen={isOpen} />
+          <HamburgerLine $isOpen={isOpen} />
+        </HamburgerButton>
       </NavInner>
     </Nav>
   );

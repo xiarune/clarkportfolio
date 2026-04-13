@@ -217,7 +217,7 @@ const SkillItem = styled.li`
   &::before {
     content: '~';
     margin-right: 0.6rem;
-    color: #8b1a1a;
+    color: #f5e6c8;
   }
 `;
 
@@ -265,7 +265,7 @@ export default function About() {
               </ImageStack>
               <EducationText>
                 <University>University of Central Florida</University>
-                <Degree>Bachelor of Arts in Web Design</Degree>
+                <Degree>Bachelor of Arts in Digital Media</Degree>
                 <EducationDetails>May 2026 | GPA: 3.75</EducationDetails>
               </EducationText>
             </EducationCard>

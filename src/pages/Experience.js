@@ -115,7 +115,7 @@ const ResponsibilityItem = styled.li`
   &::before {
     content: '~';
     margin-right: 0.6rem;
-    color: #8b1a1a;
+    color: #f5e6c8;
   }
 `;
 
