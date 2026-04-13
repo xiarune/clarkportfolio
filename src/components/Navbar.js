@@ -1,7 +1,7 @@
 // src/components/Navbar.js
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import myLogo from '../assets/images/my_logo.png';
 import linkedinIcon from '../assets/images/LinkedIn.png';
 import emailIcon from '../assets/images/email.png';
@@ -162,7 +162,7 @@ const NavLinks = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
+const navLinkStyles = `
   font-family: 'Playfair Display', serif;
   font-weight: 600;
   font-size: 1.05rem;
@@ -171,6 +171,9 @@ const StyledLink = styled(Link)`
   transition: color 0.3s ease;
   padding: 0.25rem 0;
   letter-spacing: 0.02em;
+  cursor: pointer;
+  background: none;
+  border: none;
 
   &:hover {
     color: #c9a227;
@@ -188,62 +191,88 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledLink = styled(Link)`
+  ${navLinkStyles}
+`;
+
+const StyledButton = styled.button`
+  ${navLinkStyles}
+`;
+
 export default function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const isHomePage = location.pathname === '/';
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  const scrollToSection = (sectionId) => {
+    closeMenu();
+    if (isHomePage) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home page and then scroll
+      navigate('/');
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    closeMenu();
+    if (isHomePage) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <Nav>
       <NavInner>
-        <LogoLink to="/" onClick={closeMenu} aria-label="Home">
+        <LogoLink to="/" onClick={handleLogoClick} aria-label="Home">
           <LogoImage src={myLogo} alt="Logo" />
         </LogoLink>
 
         <NavLinks $isOpen={isOpen}>
-          <StyledLink
-            to="/"
-            className={location.pathname === '/' ? 'active' : undefined}
-            onClick={closeMenu}
+          <StyledButton
+            onClick={() => scrollToSection('home')}
+            className={isHomePage ? 'active' : undefined}
           >
             Home
-          </StyledLink>
+          </StyledButton>
 
-          <StyledLink
-            to="/about"
-            className={location.pathname === '/about' ? 'active' : undefined}
-            onClick={closeMenu}
+          <StyledButton
+            onClick={() => scrollToSection('about')}
           >
             About
-          </StyledLink>
+          </StyledButton>
 
-          <StyledLink
-            to="/experience"
-            className={
-              location.pathname === '/experience' ? 'active' : undefined
-            }
-            onClick={closeMenu}
+          <StyledButton
+            onClick={() => scrollToSection('experience')}
           >
             Experience
-          </StyledLink>
+          </StyledButton>
 
-          <StyledLink
-            to="/projects"
-            className={location.pathname === '/projects' ? 'active' : undefined}
-            onClick={closeMenu}
+          <StyledButton
+            onClick={() => scrollToSection('projects')}
           >
             Projects
-          </StyledLink>
+          </StyledButton>
 
-          <StyledLink
-            to="/contact"
-            className={location.pathname === '/contact' ? 'active' : undefined}
-            onClick={closeMenu}
+          <StyledButton
+            onClick={() => scrollToSection('contact')}
           >
             Contact
-          </StyledLink>
+          </StyledButton>
         </NavLinks>
 
         <SocialIcons>

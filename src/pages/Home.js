@@ -1,6 +1,6 @@
 // src/pages/Home.js
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 // Home assets
 import homepageImage from '../assets/images/homepage_image.png';
@@ -28,6 +28,104 @@ import portImg from '../assets/images/projects/sable_logo.png';
 
 // Contact assets
 import backgroundContacts from '../assets/images/background-contacts.jpg';
+
+// Logo for sidebar
+import myLogo from '../assets/images/my_logo.png';
+
+// ============ SIDEBAR STYLES ============
+const slideIn = keyframes`
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+`;
+
+const Sidebar = styled.nav`
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 1000;
+  background: rgba(26, 20, 16, 0.95);
+  border-right: 1px solid rgba(201, 162, 39, 0.3);
+  padding: 2rem 1.25rem;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: ${({ $visible }) => $visible ? slideIn : slideOut} 0.4s ease forwards;
+  pointer-events: ${({ $visible }) => $visible ? 'auto' : 'none'};
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const SidebarLogo = styled.img`
+  width: 50px;
+  height: auto;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+`;
+
+const SidebarLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+`;
+
+const SidebarLink = styled.a`
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #f5e6c8;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: #c9a227;
+    background: rgba(201, 162, 39, 0.1);
+  }
+
+  &.active {
+    color: #c9a227;
+    background: rgba(201, 162, 39, 0.15);
+    font-weight: 600;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #c9a227;
+    outline-offset: 2px;
+  }
+`;
 
 // ============ HOME SECTION STYLES ============
 const HomeWrapper = styled.section.attrs({
@@ -151,6 +249,10 @@ const AboutContent = styled.div`
   z-index: 2;
   max-width: 1000px;
   margin: 0 auto;
+
+  @media (min-width: 769px) {
+    padding-left: 80px;
+  }
 `;
 
 const HeroSection = styled.div`
@@ -368,6 +470,10 @@ const ExperienceContent = styled.div`
   z-index: 2;
   width: 100%;
   max-width: 1000px;
+
+  @media (min-width: 769px) {
+    padding-left: 80px;
+  }
 `;
 
 const ExperienceTitle = styled.h2`
@@ -544,6 +650,10 @@ const ProjectsContent = styled.div`
   z-index: 2;
   width: 100%;
   max-width: 1100px;
+
+  @media (min-width: 769px) {
+    padding-left: 80px;
+  }
 `;
 
 const ProjectsTitle = styled.h2`
@@ -666,6 +776,10 @@ const FormContainer = styled.div`
   backdrop-filter: blur(4px);
   width: 100%;
   max-width: 550px;
+
+  @media (min-width: 769px) {
+    margin-left: 40px;
+  }
 `;
 
 const ContactTitle = styled.h2`
@@ -811,6 +925,46 @@ const SubmitButton = styled.button`
 
 // ============ COMPONENT ============
 export default function Home() {
+  // Sidebar state
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  // Scroll detection for sidebar
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const heroHeight = window.innerHeight * 0.9; // 90vh hero section
+
+      // Show sidebar after scrolling past hero
+      setShowSidebar(scrollY > heroHeight * 0.5);
+
+      // Determine active section
+      const sections = ['home', 'about', 'experience', 'projects', 'contact'];
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= window.innerHeight * 0.4) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Smooth scroll to section
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Contact form state
   const [formData, setFormData] = useState({
     name: '',
@@ -968,6 +1122,52 @@ export default function Home() {
 
   return (
     <>
+      {/* SIDEBAR NAVIGATION */}
+      <Sidebar $visible={showSidebar} aria-label="Section navigation">
+        <SidebarLogo
+          src={myLogo}
+          alt="Logo"
+          onClick={(e) => scrollToSection(e, 'home')}
+        />
+        <SidebarLinks>
+          <SidebarLink
+            href="#home"
+            onClick={(e) => scrollToSection(e, 'home')}
+            className={activeSection === 'home' ? 'active' : ''}
+          >
+            Home
+          </SidebarLink>
+          <SidebarLink
+            href="#about"
+            onClick={(e) => scrollToSection(e, 'about')}
+            className={activeSection === 'about' ? 'active' : ''}
+          >
+            About
+          </SidebarLink>
+          <SidebarLink
+            href="#experience"
+            onClick={(e) => scrollToSection(e, 'experience')}
+            className={activeSection === 'experience' ? 'active' : ''}
+          >
+            Experience
+          </SidebarLink>
+          <SidebarLink
+            href="#projects"
+            onClick={(e) => scrollToSection(e, 'projects')}
+            className={activeSection === 'projects' ? 'active' : ''}
+          >
+            Projects
+          </SidebarLink>
+          <SidebarLink
+            href="#contact"
+            onClick={(e) => scrollToSection(e, 'contact')}
+            className={activeSection === 'contact' ? 'active' : ''}
+          >
+            Contact
+          </SidebarLink>
+        </SidebarLinks>
+      </Sidebar>
+
       {/* HOME SECTION */}
       <HomeWrapper id="home">
         <HomeOverlay />
